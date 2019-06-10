@@ -1,0 +1,53 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="example-container">
+
+    <mat-form-field>
+      <mat-label>User ID*</mat-label>
+      <input matInput placeholder="Enter User ID" formControlName="userid" [errorStateMatcher]="matcher">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>User Name*</mat-label>
+      <input matInput placeholder="Enter User Name*" formControlName="username" [errorStateMatcher]="matcher">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date Of Birth*</mat-label>
+      <input matInput [matDatepicker]="picker" placeholder="Select DOB*" formControlName="dob" [errorStateMatcher]="matcher">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Age*</mat-label>
+      <input matInput type="number" placeholder="Enter Age" formControlName="age" [errorStateMatcher]="matcher">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Email*</mat-label>
+      <input matInput placeholder="Enter Email" formControlName="email" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <mat-select placeholder="Select your gender" formControlName="gender" [errorStateMatcher]="matcher">
+        <mat-option value="male">male</mat-option>
+        <mat-option value="female">female</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>About me</mat-label>
+      <textarea matInput placeholder="Enter About user" formControlName="aboutme" [errorStateMatcher]="matcher"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid" class="width-50">{{AddEditBtn}}</button>
+    <button mat-raised-button type="reset" class="width-50" (onReset)="resetAddEditBtn()">Reset</button>
+  </div>
+</form>

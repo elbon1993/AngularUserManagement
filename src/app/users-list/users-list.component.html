@@ -1,0 +1,52 @@
+<div class="user-list-container">
+  <mat-table [dataSource]="usersListBind" class="mat-elevation-z8">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="userid">
+      <mat-header-cell *matHeaderCellDef> User ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.userid}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="age">
+      <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.age}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+      <mat-header-cell *matHeaderCellDef> DOB </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dob}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="aboutme">
+      <mat-header-cell *matHeaderCellDef> About me </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.aboutme}} </mat-cell>
+    </ng-container>
+
+    <ng-container  matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="loadUser(element.userid)"> Edit </mat-cell>
+      </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <br />
+  <app-add-user (onUpdate)="updateUser($event)"></app-add-user><br />
+</div>
